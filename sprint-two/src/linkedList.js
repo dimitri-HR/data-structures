@@ -3,15 +3,41 @@ var LinkedList = function() {
   list.head = null;
   list.tail = null;
 
+  // Complexity O(1)
   list.addToTail = function(value) {
+    var prevTail = list.tail;
+    list.tail = Node(value);
+    if (prevTail) {
+      prevTail.next = list.tail;
+    }
+    if (!list.head) {
+      list.head = list.tail;
+    }
   };
 
+  // Complexity O(1)
   list.removeHead = function() {
+    var currentHead = list.head;
+    if (currentHead) {
+      list.head = list.head.next;
+      return currentHead.value;
+    }
   };
 
+  // Complexity O(n)
   list.contains = function(target) {
+    var node = list.head;
+    var searchList = function(node) {
+      if (node.value === target) {
+        return true;
+      }
+      if (node.next) {
+        return searchList(node.next);
+      }
+      return false;
+    };
+    return searchList(node);
   };
-
   return list;
 };
 
