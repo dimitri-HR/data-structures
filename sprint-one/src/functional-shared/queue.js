@@ -15,11 +15,16 @@ queueMethods.enqueue = function(value) {
   this.back++;
 };
 queueMethods.dequeue = function() {
-  if (this.back - this.front > 0) {
+  var qSize = this.back - this.front;
+  if (qSize > 0) {
     var dequeuedItem = this.storage[this.front];
     delete this.storage[this.front];
     this.front++;
     return dequeuedItem;
+  }
+  if (qSize === 0) {
+    this.front = 0;
+    this.back = 0;
   }
 };
 queueMethods.size = function() {
