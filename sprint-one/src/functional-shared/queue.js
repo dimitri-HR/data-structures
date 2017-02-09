@@ -4,10 +4,7 @@ var Queue = function() {
     front: 0,
     back: 0
   };
-  obj.enqueue = queueMethods.enqueue;
-  obj.dequeue = queueMethods.dequeue;
-  obj.size = queueMethods.size;
-
+  _.extend(obj, queueMethods);
   return obj;
 };
 
