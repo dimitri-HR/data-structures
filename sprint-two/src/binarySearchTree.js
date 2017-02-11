@@ -23,6 +23,27 @@ BinarySearchTree.prototype.insert = function(value) {
   insertNode(this);
 };
 
+BinarySearchTree.prototype.contains = function(target) {
+  var result = false;
+  if (this.value === target) {
+    result = true;
+  } else if (this.left === null && this.right === null) {
+    return result;
+  } else if (target < this.value) {
+    if (this.left === target) {
+      result = true;
+    } else {
+      return this.left.contains(target);
+    }
+  } else if (target > this.value) {
+    if (this.right === target) {
+      result = true;
+    } else {
+      return this.right.contains(target);
+    }
+  }
+  return result;
+};
 
 /*
  * Complexity: What is the time complexity of the above functions?
