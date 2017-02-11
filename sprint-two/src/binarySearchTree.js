@@ -45,6 +45,25 @@ BinarySearchTree.prototype.contains = function(target) {
   return result;
 };
 
+BinarySearchTree.prototype.depthFirstLog = function(cb) {
+  cb(this.value);
+  if (this.left === null && this.right === null) {
+    return;
+  } else {
+    if (this.left === null) {
+      this.right.depthFirstLog(cb);
+    } else if (this.right === null) {
+      this.left.depthFirstLog(cb);
+    } else {
+      this.left.depthFirstLog(cb);
+      this.right.depthFirstLog(cb);
+    }
+  }
+};
+
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+// insert - Complexity O(log n) - logarithmic
+// contains - Complexity O(log n) - logarithmic
+// depthFirstLog - Complexity O(n) - linear
