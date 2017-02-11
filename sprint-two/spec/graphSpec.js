@@ -68,4 +68,23 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
+
+  it('should not remove edges between nodes when no edges exist', function() {
+    graph.addNode(1);
+    graph.addNode(4);
+    graph.addNode(5);
+    graph.addEdge(5, 4);
+    expect(graph.hasEdge(1, 5)).to.equal(false);
+    graph.removeEdge(5, 1);
+    expect(graph.hasEdge(1, 5)).to.equal(false);
+    expect(graph.hasEdge(4, 5)).to.equal(true);
+  });
+
+  it('should not create edges between non-existing nodes', function() {
+    graph.addNode(2);
+    graph.addNode(1);
+    graph.addEdge(3, 2);
+    expect(graph.hasEdge(3, 2)).to.equal(false);
+    expect(graph.hasEdge(3, 1)).to.equal(false);
+  });
 });

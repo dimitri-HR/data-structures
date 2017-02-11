@@ -17,16 +17,16 @@ var LinkedList = function() {
 
   // Complexity O(1)
   list.removeHead = function() {
-    var currentHead = list.head;
+    var currentHead = this.head;
     if (currentHead) {
-      list.head = list.head.next;
+      this.head = this.head.next;
       return currentHead.value;
     }
   };
 
   // Complexity O(n)
   list.contains = function(target) {
-    var node = list.head;
+    var node = this.head;
     var searchList = function(node) {
       if (node.value === target) {
         return true;
@@ -38,6 +38,7 @@ var LinkedList = function() {
     };
     return searchList(node);
   };
+
   return list;
 };
 
