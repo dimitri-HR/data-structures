@@ -41,4 +41,8 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
+  it('should not be able to add undefined values to a tree', function() {
+    tree.addChild(undefined);
+    expect(tree.children.length).to.equal(0);
+  });
 });
