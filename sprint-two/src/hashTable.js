@@ -1,5 +1,6 @@
 
 var HashTable = function() {
+  this._count = 0;
   this._limit = 8;
   this._storage = LimitedArray(this._limit);
 };
@@ -28,6 +29,10 @@ HashTable.prototype.insert = function(k, v) {
   if (!found) {
     // insert a new tuple
     bucket.push([k, v]);
+    this._count++;
+    if (this._count > this._limit * 0.75) {
+      this._resize(this._limit * 2);
+    }
   }
 };
 
@@ -55,10 +60,29 @@ HashTable.prototype.remove = function(k) {
     var tuple = bucket[i];
     if (tuple[0] === k) {
       bucket.splice(i, 1);
+      this._count--;
+      if (this._count < this._limit * 0.25) {
+        this._resize(this._limit / 2);
+      }
       return tuple[1];
     }
   }
   return null;
+};
+
+HashTable.prototype._resize = function(newLimit) {
+  var oldStorage = this._storage;
+  this._limit = newLimit;
+  this._storage = LimitedArray(newLimit);
+  this._count = 0;
+
+  oldStorage.each(function(bucket) {
+    if (!bucket) { return }
+    for (var i = 0; i < bucket.length; i++) {
+      var tuple = bucket[i];
+      this.insert(tuple[0], tuple[1]);
+    }
+  }.bind(this));
 };
 
 /*
