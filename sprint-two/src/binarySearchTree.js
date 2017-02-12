@@ -9,7 +9,7 @@ var BinarySearchTree = function(value) {
 BinarySearchTree.prototype.insert = function(value) {
   var newNode = BinarySearchTree(value);
 
-  var insertNode = function (node) {
+  var insertNode = function(node) {
     if (value < node.value && !node.left) {
       node.left = newNode;
     } else if (value < node.value) {
@@ -60,10 +60,9 @@ BinarySearchTree.prototype.depthFirstLog = function(cb) {
     }
   }
 };
-
 /*
  * Complexity: What is the time complexity of the above functions?
  */
-// insert - Complexity O(log n) - logarithmic
-// contains - Complexity O(log n) - logarithmic
-// depthFirstLog - Complexity O(n) - linear
+ // insert - Complexity O(log n) - logarithmic
+ // contains - Complexity O(log n) - logarithmic
+ // depthFirstLog - Complexity O(n) - linear

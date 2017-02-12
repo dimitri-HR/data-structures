@@ -3,7 +3,6 @@ var LinkedList = function() {
   list.head = null;
   list.tail = null;
 
-  // Complexity O(1)
   list.addToTail = function(value) {
     var prevTail = list.tail;
     list.tail = Node(value);
@@ -15,18 +14,16 @@ var LinkedList = function() {
     }
   };
 
-  // Complexity O(1)
   list.removeHead = function() {
-    var currentHead = this.head;
+    var currentHead = list.head;
     if (currentHead) {
-      this.head = this.head.next;
+      list.head = list.head.next;
       return currentHead.value;
     }
   };
 
-  // Complexity O(n)
   list.contains = function(target) {
-    var node = this.head;
+    var node = list.head;
     var searchList = function(node) {
       if (node.value === target) {
         return true;
@@ -38,7 +35,6 @@ var LinkedList = function() {
     };
     return searchList(node);
   };
-
   return list;
 };
 
@@ -54,3 +50,6 @@ var Node = function(value) {
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+// addToTail - Complexity O(1)
+// removeHead - Complexity O(1)
+// contains - Complexity O(n)

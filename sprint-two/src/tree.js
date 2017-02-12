@@ -14,16 +14,16 @@ var extend = function(obj1, obj2) {
 
 var treeMethods = {};
 
-// Complexity O(1) - constant
 treeMethods.addChild = function(value) {
-  var node = Tree(value);
-  this.children.push(node);
+  if (value) {
+    var node = Tree(value);
+    this.children.push(node);
+  }
 };
 
-// Complexity O(n) - linear
 treeMethods.contains = function(target) {
   var searchTree = function (branch, result) {
-    var result = result || false;
+    result = result || false;
     if (branch.value === target) {
       result = true;
     }
@@ -41,3 +41,5 @@ treeMethods.contains = function(target) {
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+// addChild - Complexity O(1) - constant
+// contains - Complexity O(n) - linear
